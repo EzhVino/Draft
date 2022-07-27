@@ -1,38 +1,62 @@
 ﻿
-// Console.WriteLine("Введите размер массива");
-// int size = Convert.ToInt32(Console.ReadLine());
-// int [] arr = RandomArray(size);
-// ShowArray(arr);
-// Console.WriteLine();
-// SwapArray(arr);
 
-
-// void EvenArray(int[,] array)
+// string[] CreateArray(int size)
 // {
-
-//     for (int i = 2; i < array.GetLength(0); i++)
+//     string[] array = new string[size];
+//     for (int i = 0; i < size; i++)
 //     {
-//         for (int j = 2; j < array.GetLength(1); j++)
-//         {
-//             if (i % 2 == 0 && j % 2 == 0)
-//                 array[i, j] *= array[i, j];
-//         }
+//         Console.Write($"Input element {i + 1} of the massive: ");
+//         array[i] = Convert.ToString(Console.ReadLine());
+//     }
+//     return array;
+// }
+
+// void ShowArray(string[] array)
+// {
+//     for (int i = 0; i < array.Length; i++)
+//     {
+//         Console.Write(array[i] + " ");
 //     }
 // }
 
-// int[,] SwapArray2(int [,] array)
+// int CountElements(string[] massive, int elementSize)
 // {
-//         int[,] arrayNew = new int[array.GetLength(0), array.GetLength(1)];
-//     for (int i = 0; i < array.GetLength(0); i++)
+//     int count = 0;
+//     for (int i = 0; i < massive.Length; i++)
 //     {
-//         for (int j = 0; j < array.GetLength(1); j++)
+//         if (massive[i].Length <= elementSize)
+//             count++;
+//     }
+//     return count;
+// }
+
+// string [] ModifyMassive(string[] massive, int elementSize)
+// {
+//     int newSize = CountElements(massive, elementSize);
+//     string[] newMassive = new string[newSize];
+//     int i = 0;
+//     int j = 0;
+
+//     while (j < newSize)
+//     {
+//         while (i < massive.Length)
 //         {
-//             arrayNew [j, i] = array [i, j];
+//             if (massive[i].Length <= elementSize)
+//             {
+//                 newMassive[j] = massive[i];
+//                 j++;
+//             }
+//             i++;
 //         }
 //     }
-//     return arrayNew;
-
+//     return newMassive;
 // }
+
+// Console.Clear();
+// string [] myArray = CreateArray(4);
+
+// ShowArray(ModifyMassive(myArray, 3));
+
 
 
 string[] CreateArray(int size)
@@ -65,9 +89,15 @@ int CountElements(string[] massive, int elementSize)
     return count;
 }
 
-string [] ModifyMassive(string[] massive, int elementSize)
+void ModifyMassive(string[] massive, int elementSize)
 {
-    int newSize = CountElements(massive, elementSize);
+    int newSize = 0;
+    for (int index = 0; index < massive.Length; index++)
+    {
+        if (massive[index].Length <= elementSize)
+            newSize++;
+    }
+
     string[] newMassive = new string[newSize];
     int i = 0;
     int j = 0;
@@ -84,12 +114,13 @@ string [] ModifyMassive(string[] massive, int elementSize)
             i++;
         }
     }
-    return newMassive;
+    ShowArray(newMassive);
 }
 
 Console.Clear();
 string [] myArray = CreateArray(4);
 
-ShowArray(ModifyMassive(myArray, 3));
+ModifyMassive(myArray, 3);
+
 
 
